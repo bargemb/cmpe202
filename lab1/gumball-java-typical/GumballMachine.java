@@ -1,43 +1,55 @@
 
+import java.util.Arrays;
+
 public class GumballMachine
 {
 
-    private int num_gumballs;
-    private boolean has_quarter;
+    private int numGumball;
+    private int costPerGumball;
+    private int[] canAccept;
+    private int hasMoney;
 
-    public GumballMachine( int size )
+    public GumballMachine(int size, int cost, int[] canAccept)
     {
         // initialise instance variables
-        this.num_gumballs = size;
-        this.has_quarter = false;
+        this.numGumball = size;
+        this.costPerGumball = cost;
+        this.canAccept = canAccept;
+        this.hasMoney = 0;
+
     }
 
-    public void insertQuarter(int coin)
+    public void insertCoin(int coin)
     {
-        if ( coin == 25 )
-            this.has_quarter = true ;
-        else 
-            this.has_quarter = false ;
+        Arrays.sort(this.canAccept);
+        if (Arrays.binarySearch(this.canAccept, coin) >= 0){
+            this.hasMoney += coin;
+            System.out.println(coin + " cents inserted");
+        }
+        else {
+            System.out.println("Acceptable coins to this Gumball are " +
+                    Arrays.toString(this.canAccept));
+        }
     }
-    
+
     public void turnCrank()
     {
-    	if ( this.has_quarter )
+    	if ( this.costPerGumball == this.hasMoney )
     	{
-    		if ( this.num_gumballs > 0 )
+    		if ( this.numGumball > 0 )
     		{
-    			this.num_gumballs-- ;
-    			this.has_quarter = false ;
-    			System.out.println( "Thanks for your quarter.  Gumball Ejected!" ) ;
+    			this.numGumball-- ;
+    			System.out.println( "Thanks for your " + this.hasMoney + " cents.  Gumball Ejected!" );
+                this.hasMoney = 0;
     		}
     		else
     		{
-    			System.out.println( "No More Gumballs!  Sorry, can't return your quarter." ) ;
+    			System.out.println( "No More Gumballs!  Sorry, can't return your money." );
     		}
     	}
-    	else 
+    	else
     	{
-    		System.out.println( "Please insert a quarter" ) ;
-    	}        
+    		System.out.println( "Please insert total of " + this.costPerGumball + " cents");
+    	}
     }
 }
