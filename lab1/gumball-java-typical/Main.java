@@ -2,7 +2,7 @@
 public class Main {
 	public static void main(String[] args) {
 
-		GumballMachine gumballMachine1 = new GumballMachine(1, 25, new int[]{25});
+        GumballMachine gumballMachine1 = new GumballMachine(1, 25, new int[]{25});
         GumballMachine gumballMachine2 = new GumballMachine(15, 50, new int[]{25});
         GumballMachine gumballMachine3 = new GumballMachine(15, 50, new int[]{5, 10, 25});
 
