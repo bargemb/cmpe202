@@ -3,31 +3,42 @@
 public class GumballMachine {
  
 	State soldOutState;
-	State noQuarterState;
-	State hasQuarterState;
+	State noCoinState;
+	State hasCoinState;
 	State soldState;
+	State verifyState;
  
 	State state = soldOutState;
 	int count = 0;
+    int costPerGumball;
+    int[] canAccept;
+    int coinSum;
  
-	public GumballMachine(int numberGumballs) {
+	public GumballMachine(int numberGumballs, int cost, int[] canAccept) {
 		soldOutState = new SoldOutState(this);
-		noQuarterState = new NoQuarterState(this);
-		hasQuarterState = new HasQuarterState(this);
+		noCoinState = new NoCoinState(this);
+		hasCoinState = new HasCoinState(this);
 		soldState = new SoldState(this);
+		verifyState = new VerifyState(this);
 
 		this.count = numberGumballs;
+		this.costPerGumball = cost;
+		this.canAccept = canAccept;
+
  		if (numberGumballs > 0) {
-			state = noQuarterState;
+			state = noCoinState;
+			coinSum = 0;
 		} 
 	}
  
-	public void insertQuarter() {
-		state.insertQuarter();
+	public void insertCoin(int coin) {
+		state.insertCoin();
+		this.coinSum += coin;
 	}
  
-	public void ejectQuarter() {
-		state.ejectQuarter();
+	public void ejectCoin() {
+		state.ejectCoin();
+		this.coinSum = 0;
 	}
  
 	public void turnCrank() {
@@ -49,10 +60,14 @@ public class GumballMachine {
 	int getCount() {
 		return count;
 	}
+
+	int getCoinSum(){
+	    return coinSum;
+    }
  
 	void refill(int count) {
 		this.count = count;
-		state = noQuarterState;
+		state = noCoinState;
 	}
 
     public State getState() {
@@ -63,16 +78,20 @@ public class GumballMachine {
         return soldOutState;
     }
 
-    public State getNoQuarterState() {
-        return noQuarterState;
+    public State getNoCoinState() {
+        return noCoinState;
     }
 
-    public State getHasQuarterState() {
-        return hasQuarterState;
+    public State getHasCoinState() {
+        return hasCoinState;
     }
 
     public State getSoldState() {
         return soldState;
+    }
+
+    public State getVerifyState() {
+        return verifyState;
     }
  
 	public String toString() {
