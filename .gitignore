@@ -4,3 +4,5 @@ lab1/gumball-java-pattern/out/
 lab1/gumball-java-typical/out/
 *.iml
 *.bluej
+*.class
+*.ctxt
