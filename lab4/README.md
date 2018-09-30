@@ -5,3 +5,5 @@ This problem can be solved using **Observer** pattern. Following is the approach
 - **Restaurant** will take action based upon notification from table. Whenever update happenes Restaurant (now acting as **Subject**) depending upon waitlist will notify **Customer** through message.
 
 ### CRC Card
+
+![CRC Card](CRC%20Cards.JPG)
