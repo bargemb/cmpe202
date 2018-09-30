@@ -7,3 +7,7 @@ This problem can be solved using **Observer** pattern. Following is the approach
 ### CRC Card
 
 ![CRC Card](CRC%20Cards.JPG)
+
+### Collaboration
+
+![Collaboration](Collaboration.JPG)
