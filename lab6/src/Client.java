@@ -11,9 +11,11 @@ public class Client {
         order.addChild(burger);
         order.addChild(fries);
 
+        System.out.println("Customer Slip\n\n");
         SlipStrategy customer = new CustomerSlip();
         customer.printDescription(order);
 
+        System.out.println("\n\n\nPacking Slip\n\n");
         SlipStrategy packing = new PackingSlip();
         packing.printDescription(order);
     }
