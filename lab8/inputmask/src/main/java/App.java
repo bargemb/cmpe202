@@ -8,7 +8,7 @@ public class App {
     private Screen screen;
     private CreditCardNum num;
     private CreditCardExp exp;
-    private CreditCardCVC cvc;
+    private CreditCardCVV cvc;
     private int count;
 
     public App() {
@@ -16,7 +16,7 @@ public class App {
         screen = new Screen();
         num = new CreditCardNum();
         exp = new CreditCardExp();
-        cvc = new CreditCardCVC();
+        cvc = new CreditCardCVV();
 
         screen.addSubComponent(num);
         screen.addSubComponent(exp);
@@ -41,6 +41,13 @@ public class App {
     public void key(String ch) {
         count++;
         screen.key(ch, count);
+        if (ch.equalsIgnoreCase("x"))
+        {
+            if(count > 0)
+                count = count - 2;
+        }
+        if(count > 24)
+            count =23;
     }
 
 }
